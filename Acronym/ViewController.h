@@ -10,6 +10,13 @@
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *acronymTF;
+@property (weak, nonatomic) IBOutlet UIButton *lookUpBtn;
+@property (weak, nonatomic) IBOutlet UITextView *definitionsTView;
+- (IBAction)lookUpBtnClicked:(UIButton *)sender;
+
+- (void) loadDefintions:(NSString*) sf;
+
 
 @end
 
