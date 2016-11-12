@@ -70,6 +70,7 @@
                     
                     NSArray* array = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
                     
+                    //check if data is returned
                     if (array.count > 0) {
                         NSDictionary* dict = [array objectAtIndex:0];
                         
@@ -91,10 +92,8 @@
                             }
                         }
                         self.definitionsTView.text = definitionsText;
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    } else {
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
                     }
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
                 }
             }];
             [dataTask resume];
