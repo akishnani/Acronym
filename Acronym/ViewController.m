@@ -81,16 +81,16 @@
                         
                         for (NSDictionary *alf in lfs) {
                             
-                            NSString *lfsDefinitionString = [NSString stringWithFormat:@"%@,freq: %@,since: %@\r\n",
+                            NSString *lfsString = [NSString stringWithFormat:@"%@,freq: %@,since: %@\r\n",
                                                    alf[@"lf"], alf[@"freq"], alf[@"since"]];
-                            [definitionsText appendString:lfsDefinitionString];
+                            [definitionsText appendString:lfsString];
                         
                             //vars
                             NSArray *aVarArray = alf[@"vars"];
                             for(NSDictionary *aVarlf in aVarArray){
-                                NSString *lfsDefinitionString = [NSString stringWithFormat:@"%@,freq: %@,since: %@\r\n",
+                                NSString *lfsString = [NSString stringWithFormat:@"%@,freq: %@,since: %@\r\n",
                                                       aVarlf[@"lf"], aVarlf[@"freq"], aVarlf[@"since"]];
-                                [definitionsText appendString:lfsDefinitionString];
+                                [definitionsText appendString:lfsString];
                             }
                         }
                         self.definitionsTView.textColor = [UIColor blackColor];
