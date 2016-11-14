@@ -63,7 +63,9 @@
             NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
                 if (error) {
                     NSLog(@"Error: %@", error);
-                    self.definitionsTView.text = [NSString stringWithFormat:@"Error: %@", error];
+                    self.definitionsTView.text = [NSString stringWithFormat:@"Error: %@", error.localizedDescription];
+                    self.definitionsTView.textColor = [UIColor redColor];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
                 } else {
                     //NSLog(@"%@ %@", response, responseObject);
                     NSMutableString *definitionsText = [[NSMutableString alloc]init];
@@ -79,18 +81,19 @@
                         
                         for (NSDictionary *alf in lfs) {
                             
-                            NSString *lfsString = [NSString stringWithFormat:@"lf: %@,freq: %@,since: %@\r\n",
+                            NSString *lfsDefinitionString = [NSString stringWithFormat:@"%@,freq: %@,since: %@\r\n",
                                                    alf[@"lf"], alf[@"freq"], alf[@"since"]];
-                            [definitionsText appendString:lfsString];
+                            [definitionsText appendString:lfsDefinitionString];
                         
                             //vars
                             NSArray *aVarArray = alf[@"vars"];
                             for(NSDictionary *aVarlf in aVarArray){
-                                NSString *lfString = [NSString stringWithFormat:@"lf: %@,freq: %@,since: %@\r\n",
+                                NSString *lfsDefinitionString = [NSString stringWithFormat:@"%@,freq: %@,since: %@\r\n",
                                                       aVarlf[@"lf"], aVarlf[@"freq"], aVarlf[@"since"]];
-                                [definitionsText appendString:lfString];
+                                [definitionsText appendString:lfsDefinitionString];
                             }
                         }
+                        self.definitionsTView.textColor = [UIColor blackColor];
                         self.definitionsTView.text = definitionsText;
                     }
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
