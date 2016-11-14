@@ -65,6 +65,7 @@
             NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
                 if (error) {
                     NSLog(@"Error: %@", error);
+                    //display  the error in red color
                     self.definitionsTView.text = [NSString stringWithFormat:@"Error: %@", error.localizedDescription];
                     self.definitionsTView.textColor = [UIColor redColor];
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -75,7 +76,7 @@
                     //converting the json response to NSArray and NSDictionary
                     NSArray* array = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
                     
-                    //check if data is returned
+                    //check if json data is returned
                     if (array.count > 0) {
                         NSDictionary* dict = [array objectAtIndex:0];
                         
@@ -96,6 +97,7 @@
                                 [definitionsText appendString:lfsString];
                             }
                         }
+                        
                         self.definitionsTView.textColor = [UIColor blackColor];
                         self.definitionsTView.text = definitionsText;
                     }
