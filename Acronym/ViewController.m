@@ -40,7 +40,7 @@
         //clear the text view
         self.definitionsTView.text = @"";
         
-        //show the progress
+        //install the progress HUD
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
@@ -69,7 +69,8 @@
                 } else {
                     //NSLog(@"%@ %@", response, responseObject);
                     NSMutableString *definitionsText = [[NSMutableString alloc]init];
-                    
+
+                    //converting the json response to NSArray and NSDictionary
                     NSArray* array = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
                     
                     //check if data is returned
