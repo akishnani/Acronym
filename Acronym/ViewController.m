@@ -42,6 +42,8 @@
         
         //install the progress HUD
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        //put this on background thread with block with low priority
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
             NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
